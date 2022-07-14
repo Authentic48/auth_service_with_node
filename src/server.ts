@@ -1,17 +1,27 @@
-import express from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db';
+import { app } from './app';
 
 // .env configuration
-dotenv.config()
+dotenv.config();
 
-// DB connection
-connectDB()
+const start = () => {
+  if (!process.env.JWT_KEY) {
+    throw new Error('JWT_KEY must be defined');
+  }
 
-const app = express();
+  if (!process.env.MONGO_URI) {
+    throw new Error('MONGO_URI must be defined');
+  }
 
-const PORT = process.env.PORT || 6000;
+  //DB connection
+  connectDB();
 
-app.listen(PORT, () => {
-  console.log(`App in ${process.env.NODE_ENV} is running on port  ${PORT}`);
-});
+  const PORT = process.env.PORT || 6000;
+
+  app.listen(PORT, () => {
+    console.log(`App in ${process.env.NODE_ENV} is running on port  ${PORT}`);
+  });
+};
+
+start();
