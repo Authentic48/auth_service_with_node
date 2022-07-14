@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import { NotFoundError } from './errors/not-found-error';
 import { errorHandler } from './middlewares/error-handler';
 import { signupRouter } from './routes/signup';
+import { signinRouter } from './routes/signin';
 
 const app = express();
 app.set('trust proxy', true);
@@ -18,9 +19,10 @@ app.use(
 
 // Routes
 app.use(signupRouter)
+app.use(signinRouter)
 
 
-// Fallback routes 
+// Fallback routes error 
 app.all('*', async () => {
   throw new NotFoundError();
 });
