@@ -2,10 +2,10 @@ import request from 'supertest';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
+
 let mongo: any;
 
-jest.setTimeout(50000)
-
+jest.setTimeout(50000);
 
 beforeAll(async () => {
   process.env.JWT_KEY = 'thisourjwtsecretitcouldbeanything';

@@ -39,7 +39,10 @@ router.post(
         email: existingUser.email,
         name: existingUser.name,
       },
-      process.env.JWT_KEY!
+      process.env.JWT_KEY!,
+      {
+        expiresIn: '900s',
+      }
     );
 
     req.session = { jwt: userJwt };
