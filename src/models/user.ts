@@ -1,7 +1,12 @@
-import mongoose from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { Password } from '../services/password';
 
-const userSchema = new mongoose.Schema(
+interface IUser {
+  name: string;
+  email: string;
+  password: string;
+}
+const userSchema = new Schema<IUser>(
   {
     name: {
       type: String,
@@ -34,6 +39,6 @@ userSchema.pre('save', async function (done) {
   done();
 });
 
-const User = mongoose.model('User', userSchema);
+const User = model<IUser>('User', userSchema);
 
 export { User };
