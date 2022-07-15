@@ -9,6 +9,7 @@ import { signinRouter } from './routes/signin';
 import { currentUser } from './middlewares/current-user';
 import { updateUserRouter } from './routes/update';
 import { indexUserRouter } from './routes';
+import { deleteUserRouter } from './routes/delete';
 
 const app = express();
 app.set('trust proxy', true);
@@ -29,6 +30,7 @@ app.use(signupRouter)
 app.use(signinRouter)
 app.use(updateUserRouter)
 app.use(indexUserRouter)
+app.use(deleteUserRouter)
 
 
 // Fallback routes error 
