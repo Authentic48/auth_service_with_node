@@ -32,7 +32,7 @@ router.put(
     }
 
     if(req.currentUser!.id !== user.id){
-        throw new NotAuthorizedError()
+        // forbiden error
     }
 
     user.set({ name, email, password })
